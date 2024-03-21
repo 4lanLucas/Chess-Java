@@ -7,6 +7,7 @@ import Chess.ChessMatch;
 import Chess.ChessPiece;
 import Chess.ChessPosition;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -36,6 +37,11 @@ public class Main {
                 ChessPiece capturedPiece = chessMatch.perfomChessMove(source,target);
                 if (capturedPiece != null){
                     captured.add(capturedPiece);
+                }
+                if (chessMatch.getPromoted() != null){
+                    System.out.print("Enter piece for promotion (B/N/R/Q): ");
+                    String type = sc.nextLine();
+                    chessMatch.replacePromotedPiece(type);
                 }
             } catch (ChessException e){
                 System.out.println(e.getMessage());
